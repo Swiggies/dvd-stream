@@ -14,8 +14,6 @@ func _ready():
 	l = get_node("/root/Node2D/Label")
 	randomize()
 	current_vector = Vector2(rand_range(-1,1), rand_range(-1,1)).normalized()
-	print(current_vector)
-	print(l.rect_size)
 	get_tree().get_root().set_transparent_background(true)
 	if OS.has_feature("JavaScript"):
 		l.text = str(JavaScript.eval("new URLSearchParams(window.location.search).get('text')"))
