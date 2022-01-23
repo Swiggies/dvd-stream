@@ -22,7 +22,6 @@ theme = SubResource( 2 )
 text = "AWAY"
 align = 1
 valign = 1
-percent_visible = -0.25
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -18,15 +18,15 @@ func _ready():
 	print(l.rect_size)
 	get_tree().get_root().set_transparent_background(true)
 	if OS.has_feature("JavaScript"):
+		l.text = str(JavaScript.eval("new URLSearchParams(window.location.search).get('text')"))
 		speed = float(JavaScript.eval("new URLSearchParams(window.location.search).get('speed')"))
-		l.text = JavaScript.eval("new URLSearchParams(window.location.search).get('text')")
 
 func bounce(dir : Vector2):
 	current_vector = current_vector.bounce(dir)
 	cd = COOLDOWN
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var num = rng.randi_range(0, colours.size())
+	var num = rng.randi_range(0, colours.size()-1)
 	l.modulate = colours[num]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
