@@ -12,6 +12,7 @@ var new_vector : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	l = get_node("/root/Node2D/Label")
+	l.rect_position = (get_viewport_rect().size / 2) - (l.rect_size / 2)
 	randomize()
 	current_vector = Vector2(rand_range(-1,1), rand_range(-1,1)).normalized()
 	get_tree().get_root().set_transparent_background(true)
