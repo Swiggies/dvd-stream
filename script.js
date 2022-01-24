@@ -8,10 +8,13 @@ import Two from 'https://cdn.skypack.dev/two.js@latest';
 //   Two.Types.webgl
 // To see different rendering styles.
 const two = new Two({
-  type: Two.Types.svg,
-  fullscreen: true,
-  autostart: true
+	type: Two.Types.svg,
+	fullscreen: true,
+	autostart: true
 }).appendTo(document.body);
+
+// Random colors
+var colorArray = ['white', 'red', 'yellow', 'lightblue'];
 
 // Change the background
 two.renderer.domElement.style.background = '#00000000';
@@ -23,10 +26,10 @@ const urlParams = new URLSearchParams(queryString);
 // The font styles to apply to
 // all text in the scene.
 const styles = {
-  family: 'dongle, sans-serif',
-  size: 50,
-  leading: 50,
-  weight: 500
+	family: 'roboto, sans-serif',
+	size: 50,
+	leading: 50,
+	weight: 500
 };
 
 const isMobile = window.navigator.maxTouchPoints > 0;
@@ -41,8 +44,9 @@ two.bind('update', update);
 
 // Set the position of the directions
 // to the center of the page.
-function resize() {
-  dir.translation.set(two.width / 2, two.height / 2);
+function resize()
+{
+	dir.translation.set(two.width / 2, two.height / 2);
 }
 
 function reflect(vec, normal)
@@ -54,13 +58,15 @@ function reflect(vec, normal)
 
 function bounce(normal)
 {
+	dir.fill = colorArray[Math.floor(Math.random() * colorArray.length)];
+	console.log(dir.fill);
 	return reflect(currentVector, normal);
 }
 
 const speed = parseFloat(urlParams.get('speed') ?? 1);
 var textWidth, textHeight;
 var currentVector = new Two.Vector(1, 1).normalize().multiply(speed);
-var s = dir.getBoundingClientRect(); 
+var s = dir.getBoundingClientRect();
 
 // Debug stuff to figure out the size of the text
 // var shape = two.makeRectangle(two.width / 2, two.height / 2, s.width, s.height);
@@ -73,16 +79,16 @@ var setup = false;
 // the scene is rendered. Think of this as an
 // animation loop.
 function update()
-{	
+{
 	// I hate this
-	if(!setup) timer += 1;
+	if (!setup) timer += 1;
 	if (timer >= 3)
 	{
 		onTextLoad();
 		setup = true;
 		timer = 0;
 	}
-	
+
 	if (dir.position.y + textHeight >= two.height)
 	{
 		currentVector = bounce(new Two.Vector(0, 1));
