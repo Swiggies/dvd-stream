@@ -33,7 +33,11 @@ const styles = {
 };
 
 const isMobile = window.navigator.maxTouchPoints > 0;
-const message = urlParams.get('text') ?? "Text";
+var message = urlParams.get('text');
+if (message == null)
+{
+	message = "Text";
+}
 
 const dir = two.makeText(message, two.width / 2, two.height / 2, styles);
 dir.fill = "#fff"
@@ -59,13 +63,13 @@ function reflect(vec, normal)
 function bounce(normal)
 {
 	dir.fill = colorArray[Math.floor(Math.random() * colorArray.length)];
-	console.log(dir.fill);
 	return reflect(currentVector, normal);
 }
 
-const speed = parseFloat(urlParams.get('speed') ?? 1);
+var speed = urlParams.get('speed');
+if (speed == null) { speed = 1; }
 var textWidth, textHeight;
-var currentVector = new Two.Vector(1, 1).normalize().multiply(speed);
+var currentVector = new Two.Vector(1, 1).normalize().multiply(parseFloat(speed));
 var s = dir.getBoundingClientRect();
 
 // Debug stuff to figure out the size of the text
