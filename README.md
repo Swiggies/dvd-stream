@@ -3,7 +3,7 @@ https://swiggies.github.io/dvd-stream/?text=AWAY&speed=200
 
 Customise the text and speed parameters to change it up a bit if you want.
 
-#Things I want to add
+# Things I want to add
 - More colours
 - Easier to customise
 - Randomized start
