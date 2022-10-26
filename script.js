@@ -29,11 +29,12 @@ const styles = {
 	family: 'roboto, sans-serif',
 	size: 50,
 	leading: 50,
-	weight: 500
+	weight: 500,
+	stroke: '#00000033',
 };
 
 const isMobile = window.navigator.maxTouchPoints > 0;
-var message = urlParams.get('text');
+var message = "Text";//urlParams.get('text');
 if (message == null)
 {
 	message = "Text";
