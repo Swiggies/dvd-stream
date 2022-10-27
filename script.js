@@ -34,7 +34,7 @@ const styles = {
 };
 
 const isMobile = window.navigator.maxTouchPoints > 0;
-var message = "Text";//urlParams.get('text');
+var message = urlParams.get('text');
 if (message == null)
 {
 	message = "Text";
