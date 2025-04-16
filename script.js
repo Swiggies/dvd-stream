@@ -35,8 +35,7 @@ const styles = {
 
 const isMobile = window.navigator.maxTouchPoints > 0;
 var message = urlParams.get('text');
-if (message == null)
-{
+if (message == null) {
 	message = "Text";
 }
 
@@ -49,20 +48,17 @@ two.bind('update', update);
 
 // Set the position of the directions
 // to the center of the page.
-function resize()
-{
+function resize() {
 	dir.translation.set(two.width / 2, two.height / 2);
 }
 
-function reflect(vec, normal)
-{
+function reflect(vec, normal) {
 	let dn = 2 * vec.dot(normal);
 	let v = vec.sub(normal.multiply(dn));
 	return v;
 }
 
-function bounce(normal)
-{
+function bounce(normal) {
 	dir.fill = colorArray[Math.floor(Math.random() * colorArray.length)];
 	return reflect(currentVector, normal);
 }
@@ -83,38 +79,31 @@ var setup = false;
 // An update callback that is called every time
 // the scene is rendered. Think of this as an
 // animation loop.
-function update()
-{
+function update() {
 	// I hate this
 	if (!setup) timer += 1;
-	if (timer >= 3)
-	{
+	if (timer >= 3) {
 		onTextLoad();
 		setup = true;
 		timer = 0;
 	}
 
-	if (dir.position.y + textHeight >= two.height)
-	{
+	if (dir.position.y + textHeight >= two.height) {
 		currentVector = bounce(new Two.Vector(0, 1));
 	}
-	if (dir.position.x + textWidth >= two.width)
-	{
+	if (dir.position.x + textWidth >= two.width) {
 		currentVector = bounce(new Two.Vector(-1, 0));
 	}
-	if (dir.position.y - textHeight <= 0)
-	{
+	if (dir.position.y - textHeight <= 0) {
 		currentVector = bounce(new Two.Vector(0, -1));
 	}
-	if (dir.position.x - textWidth <= 0)
-	{
+	if (dir.position.x - textWidth <= 0) {
 		currentVector = bounce(new Two.Vector(1, 0));
 	}
 	dir.position.add(currentVector);
 }
 
-function onTextLoad()
-{
+function onTextLoad() {
 	var e = document.getElementById('two-1');
 	var cs = e.getBoundingClientRect();
 	textWidth = cs.width / 2;
