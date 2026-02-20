@@ -100,7 +100,7 @@ function update() {
 	if (dir.position.x - textWidth <= 0) {
 		currentVector = bounce(new Two.Vector(1, 0));
 	}
-	dir.position.add(currentVector * Two.timeDelta);
+	dir.position.add(currentVector);
 }
 
 function onTextLoad() {
